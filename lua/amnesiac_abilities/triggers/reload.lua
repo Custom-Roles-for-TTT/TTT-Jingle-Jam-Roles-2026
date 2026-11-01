@@ -1,0 +1,67 @@
+local hook = hook
+
+local AddHook = hook.Add
+local RemoveHook = hook.Remove
+
+local ABILITY = {}
+
+ABILITY.Id = "reload"
+ABILITY.Type = AMNESIAC_TYPE_TRIGGER
+ABILITY.Timing = AMNESIAC_TIMING_INSTANT
+ABILITY.Description = function(params, weight)
+    return "When you reload"
+end
+
+ABILITY.DescriptionParams = {
+    ["ally"] = "you",
+    ["allyPlural"] = true,
+    ["enemy"] = "the nearest player",
+    ["enemyPlural"] = false,
+    ["bonus"] = "a random player",
+    ["bonusPlural"] = false,
+    ["dead"] = "a random dead player",
+    ["deadPlural"] = false
+}
+ABILITY.Weight = 0.2
+
+if SERVER then
+
+    function ABILITY.Begin(amnesiac)
+        AddHook("KeyPress", "Amnesiac_Reload_KeyPress_" .. amnesiac:SteamID64(), function(ply, key)
+            if ply ~= amnesiac then return end
+            if not amnesiac:IsActive() then return end
+            if key ~= IN_RELOAD then return end
+
+            local wep = ply:GetActiveWeapon()
+            if not IsValid(wep) then return end
+
+            local clip = wep:Clip1()
+            if clip < 0 or clip >= wep:GetMaxClip1() then return end
+            if ply:GetAmmoCount(wep:GetPrimaryAmmoType()) <= 0 then return end
+
+            AMNESIAC:TriggerInstantAbility(amnesiac)
+        end)
+    end
+
+    function ABILITY.End(amnesiac)
+        RemoveHook("KeyPress", "Amnesiac_Reload_KeyPress_" .. amnesiac:SteamID64())
+    end
+
+    function ABILITY.GetAllyTarget(amnesiac)
+        return amnesiac
+    end
+
+    function ABILITY.GetEnemyTarget(amnesiac)
+        return AMNESIAC:GetNearestPlayer(amnesiac)
+    end
+
+    function ABILITY.GetBonusTarget(amnesiac, blocklist)
+        return AMNESIAC:GetRandomPlayer(blocklist)
+    end
+
+    function ABILITY.GetDeadTarget(amnesiac)
+        return AMNESIAC:GetRandomDeadAlly(amnesiac)
+    end
+end
+
+AMNESIAC:RegisterAbility(ABILITY)
