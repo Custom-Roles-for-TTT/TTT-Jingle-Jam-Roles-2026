@@ -1,17 +1,11 @@
-local ents = ents
 local hook = hook
 local math = math
-local table = table
 local timer = timer
-local util = util
 
 local AddHook = hook.Add
-local RemoveHook = hook.Remove
-local CreateEntity = ents.Create
 local MathFloor = math.floor
 local TimerCreate = timer.Create
 local TimerRemove = timer.Remove
-local UtilTraceHull = util.TraceHull
 
 local ABILITY = {}
 
