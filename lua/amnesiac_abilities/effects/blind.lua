@@ -66,7 +66,7 @@ if SERVER then
     function ABILITY.InstantEffect(amnesiac, ally, enemy, bonus, dead, weight)
         if not IsPlayer(enemy) or not enemy:IsActive() then return false end
         blinded[enemy] = blinded[enemy] or {}
-        blinded[enemy][amnesiac] = CurTime() + MathFloor(15 * weight)
+        blinded[enemy][amnesiac] = CurTime() + (15 * weight)
         UpdateBlind(enemy)
         return true
     end

@@ -769,7 +769,7 @@ elseif CLIENT then
 
         local html = "The " .. ROLE_STRINGS[ROLE_AMNESIAC] .. " is a member of the <span style='color: rgb(" .. roleColor.r .. ", " .. roleColor.g .. ", " .. roleColor.b .. ")'>" .. T("innocent") .. " team</span> who has an unknown randomly generated ability."
 
-        html = html .. "<span style='display: block; margin-top: 10px;'>Their ability is revealed to them letter by letter over <span style='color: rgb(" .. roleColor.r .. ", " .. roleColor.g .. ", " .. roleColor.b .. ")'>" .. amnesiac_ability_reveal_time:GetInt() " seconds</span>."
+        html = html .. "<span style='display: block; margin-top: 10px;'>Their ability is revealed to them letter by letter over <span style='color: rgb(" .. roleColor.r .. ", " .. roleColor.g .. ", " .. roleColor.b .. ")'>" .. amnesiac_ability_reveal_time:GetInt() .. " seconds</span>."
 
         return html
     end)

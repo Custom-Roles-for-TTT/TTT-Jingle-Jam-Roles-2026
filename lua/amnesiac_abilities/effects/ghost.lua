@@ -81,7 +81,7 @@ if SERVER then
             end)
         end
 
-        local expiry = CurTime() + MathFloor(30 * weight)
+        local expiry = CurTime() + (30 * weight)
         local existing = ghosts[amnesiac][dead]
         if existing and IsValid(existing.ent) then
             existing.expiry = expiry

@@ -20,10 +20,10 @@ if SERVER then
 
     function ABILITY.InstantEffect(amnesiac, ally, enemy, bonus, dead, weight)
         if not IsPlayer(enemy) or not enemy:IsActive() then return false end
-        enemy:Ignite(MathFloor(15 * weight))
+        enemy:Ignite(15 * weight)
 
         ignited[enemy] = ignited[enemy] or {}
-        ignited[enemy][amnesiac] = CurTime() + MathFloor(15 * weight)
+        ignited[enemy][amnesiac] = CurTime() + (15 * weight)
         return true
     end
 

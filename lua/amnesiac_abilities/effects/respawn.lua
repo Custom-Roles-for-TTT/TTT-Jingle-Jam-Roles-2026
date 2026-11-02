@@ -17,7 +17,7 @@ end
 
 if SERVER then
     function ABILITY.InstantEffect(amnesiac, ally, enemy, bonus, dead, weight)
-        if not IsPlayer(dead) or dead:Alive() or dead:GetRole() == ROLE_NONE then return false end
+        if not IsPlayer(dead) or dead:Alive() or dead:GetRole() == ROLE_NONE or dead:IsRespawning() then return false end
         TimerSimple(0.1, function()
             if not IsPlayer(dead) or dead:Alive() then return end
             if GetRoundState() ~= ROUND_ACTIVE then return end

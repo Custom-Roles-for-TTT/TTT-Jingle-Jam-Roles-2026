@@ -32,7 +32,7 @@ if SERVER then
         disabled[amnesiac][enemy] = timerId
 
         enemy:DisableRoleAbility()
-        TimerCreate(timerId, MathFloor(15 * weight), 1, function()
+        TimerCreate(timerId, 15 * weight, 1, function()
             disabled[amnesiac][enemy] = nil
 
             TimerRemove(timerId)

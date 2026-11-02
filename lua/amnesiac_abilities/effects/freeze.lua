@@ -42,7 +42,7 @@ if SERVER then
         frozen[enemy][amnesiac] = timerId
 
         enemy:Freeze(true)
-        TimerCreate(timerId, MathFloor(15 * weight), 1, function()
+        TimerCreate(timerId, 15 * weight, 1, function()
             Unfreeze(enemy, amnesiac)
         end)
         return true

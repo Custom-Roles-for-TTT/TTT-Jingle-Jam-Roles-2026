@@ -35,7 +35,7 @@ if SERVER then
         disabled[amnesiac][enemy] = timerId
 
         enemy:DisableShopPurchases()
-        TimerCreate(timerId, MathFloor(60 * weight), 1, function()
+        TimerCreate(timerId, 60 * weight, 1, function()
             disabled[amnesiac][enemy] = nil
 
             TimerRemove(timerId)
